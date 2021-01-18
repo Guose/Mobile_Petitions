@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Mobile_Petitions.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mobile_Petitions.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400">
+    <Grid Background="Black">
+        <GroupBox x:Name="gbxNewCredentials" Header="Forgot Password?" HorizontalAlignment="Left" Margin="24,275,0,0" VerticalAlignment="Top" Height="302" Width="352" Foreground="White" FontFamily="Arial Black" FontSize="24" BorderThickness="2,1,1,2" Visibility="Hidden">
+            <Grid Margin="-2,-10,-2,-12">
+                <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="32 " Margin="136,27,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="195" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalScrollBarVisibility="Disabled" FontSize="16" KeyDown="txtEmail_KeyDown"/>
+                <Label x:Name="lblEmail" Content="Enter Email:" HorizontalAlignment="Left" Margin="39,31,0,0" VerticalAlignment="Top" Width="92" Foreground="White" FontSize="12" HorizontalContentAlignment="Right" FontFamily="Arial Rounded MT Bold"/>
+                <Label x:Name="lblNewPassword" Content="New Password:" HorizontalAlignment="Left" Margin="22,97,0,0" VerticalAlignment="Top" Width="109" Foreground="White" FontSize="12" HorizontalContentAlignment="Right" FontFamily="Arial Rounded MT Bold"/>
+                <Label x:Name="lblReEnterNewPassword" Content="Re-Enter Password:" HorizontalAlignment="Left" Margin="6,162,0,0" VerticalAlignment="Top" Width="125" Foreground="White" FontSize="12" HorizontalContentAlignment="Right" FontFamily="Arial Rounded MT Bold"/>
+                <PasswordBox x:Name="txtNewPassWord" HorizontalAlignment="Left" Margin="136,94,0,0" VerticalAlignment="Top" Width="195" Height="30" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyDown="txtNewPassWord_KeyDown" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                <PasswordBox x:Name="txtReEnterPassWord" HorizontalAlignment="Left" Margin="136,160,0,0" VerticalAlignment="Top" Width="195" Height="30" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyDown="txtReEnterPassWord_KeyDown" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                <Button x:Name="btnSendEmail" Content="Send Email" HorizontalAlignment="Left" Margin="81,217,0,0" VerticalAlignment="Top" Width="195" Background="#FF347D94" BorderBrush="White" BorderThickness="1,1,2,2" FontSize="14" FontFamily="Arial Rounded MT Bold" Height="27" Click="btnSendEmail_Click">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10" Direction="310" ShadowDepth="3" Color="#FFCBCBCB"/>
+                    </Button.Effect>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="gbxLogin" Header="Circulator Login" HorizontalAlignment="Left" Margin="24,283,0,0" VerticalAlignment="Top" Height="293" Width="352" Foreground="White" FontFamily="Arial Black" FontSize="24" BorderThickness="2,1,1,2">
+            <Grid Margin="-2,-10,2,-12">
+                <Button Command="{Binding ChangeToScanDL}" x:Name="btnSignIn" Content="Sign In" HorizontalAlignment="Left" Margin="20,162,0,0" VerticalAlignment="Top" Width="120" Background="#FF42919C" Foreground="Black" FontSize="14" Height="32" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" BorderBrush="White" Click="btnSignIn_Click"/>
+                <Button Command="{Binding ChangeToRegistration}" x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="206,162,0,0" VerticalAlignment="Top" Width="118" Height="32" FontSize="14" Background="#FF42919C" FontFamily="Arial Rounded MT Bold" FontWeight="Bold" BorderBrush="White"/>
+                <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="32 " Margin="126,27,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="195" KeyDown="txtUserName_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" AllowDrop="False"/>
+                <Label x:Name="lblUser" Content="User Name:" HorizontalAlignment="Left" Margin="24,31,0,0" VerticalAlignment="Top" Width="92" Foreground="White" FontSize="14" HorizontalContentAlignment="Right" FontFamily="Arial Rounded MT Bold"/>
+                <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Left" Margin="24,97,0,0" VerticalAlignment="Top" Width="92" Foreground="White" FontSize="14" HorizontalContentAlignment="Right" FontFamily="Arial Rounded MT Bold"/>
+                <PasswordBox x:Name="txtPasswordBox" HorizontalAlignment="Left" Margin="126,95,0,0" VerticalAlignment="Top" Width="195" Height="30" KeyDown="txtPasswordBox_KeyDown" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" AllowDrop="False"/>
+                <Ellipse Fill="Black" HorizontalAlignment="Left" Height="80" Margin="132,137,0,0" VerticalAlignment="Top" Width="80"/>
+                <Label x:Name="label" Content="OR" HorizontalAlignment="Left" Margin="156,163,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" FontWeight="Bold" FontStyle="Italic"/>
+                <CheckBox x:Name="chkRemember" Content="REMEMBER ME" HorizontalAlignment="Left" Margin="43,222,0,0" VerticalAlignment="Top" Foreground="White" FontSize="11" FontFamily="Arial Rounded MT Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="23"/>
+                <Label x:Name="label1" Content="|" HorizontalAlignment="Left" Margin="165,216,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+                <Label x:Name="lblForgotPW" Content="FORGOT PASSWORD" HorizontalAlignment="Left" Margin="191,221,0,0" VerticalAlignment="Top" Foreground="White" FontSize="11" MouseLeftButtonDown="lblForgotPW_MouseLeftButtonDown" MouseEnter="lblForgotPW_MouseEnter" MouseLeave="lblForgotPW_MouseLeave" FontFamily="Arial Rounded MT Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Focusable="True"/>
+            </Grid>
+
+        </GroupBox>
+        <Image x:Name="Thumbprint_jpg" Margin="88,101,85,363" Stretch="Fill" Opacity="0.65" Source="/Mobile_Petitions;component/ImageResources/Thumbprint.jpg"/>
+        <Label x:Name="lblEscan" Content="eScan" HorizontalAlignment="Left" Height="129" Margin="108,41,0,0" VerticalAlignment="Top" Width="206" Foreground="White" FontSize="72" FontFamily="Bauhaus 93"/>
+        <Label x:Name="label2" Content="PETITIONS" HorizontalAlignment="Left" Margin="226,127,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Arial Rounded MT Bold" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lblClose" Content="Close" HorizontalAlignment="Left" Margin="325,267,0,0" VerticalAlignment="Top" Foreground="#FF42919C" FontSize="14" FontWeight="Bold" FontFamily="Arial Rounded MT Bold" MouseEnter="lblClose_MouseEnter" MouseLeave="lblClose_MouseLeave" MouseLeftButtonDown="lblClose_MouseLeftButtonDown"/>
+
+    </Grid>
+</UserControl>

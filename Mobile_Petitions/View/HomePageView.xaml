@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Mobile_Petitions.Views.HomePageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mobile_Petitions.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400">
+    <Grid Background="Black">
+        <Image x:Name="Thumbprint_jpg" Margin="88,101,85,363" Stretch="Fill" Opacity="0.65" Source="/Mobile_Petitions;component/ImageResources/Thumbprint.jpg"/>
+        <Label x:Name="lblEscan" Content="eScan" HorizontalAlignment="Left" Height="129" Margin="108,41,0,0" VerticalAlignment="Top" Width="206" Foreground="White" FontSize="72" FontFamily="Bauhaus 93"/>
+        <Label x:Name="label2" Content="PETITIONS" HorizontalAlignment="Left" Margin="226,127,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Arial Rounded MT Bold" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button Command="{Binding ChangeToAgreement}" Content="Gather Signatures" Margin="66,365,66,194" Background="#FF347D94" FontSize="16" FontWeight="Bold" BorderBrush="White" BorderThickness="1,1,2,2" Click="Button_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#FFCBCBCB" Direction="310" ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="btnCloseSession" Content="Close Session" Margin="66,451,66,108" Background="#FF347D94" FontSize="16" FontWeight="Bold" BorderBrush="White" BorderThickness="1,1,2,2" Click="btnCloseSession_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#FFCBCBCB" Direction="310" ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<Application x:Class="InViewChange.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:InViewChange"
+             xmlns:viewmodels="clr-namespace:InViewChange.ViewModels"
+             xmlns:views="clr-namespace:InViewChange.Views"
+             StartupUri="MainWindow.xaml">
+    <!-- 
+    About Data Templates can be found here: https://www.youtube.com/watch?v=xUwk2-_tRzo
+    About Application.Resources can be found here: https://www.youtube.com/watch?v=84w379D1D-o
+    -->
+    <Application.Resources>
+        <DataTemplate x:Name="redViewTemplate" DataType="{x:Type viewmodels:RedViewModel}">
+            <views:RedView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="blueViewTemplate" DataType="{x:Type viewmodels:BlueViewModel}">
+            <views:BlueView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="orangeViewTemplate" DataType="{x:Type viewmodels:OrangeViewModel}">
+            <views:OrangeView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

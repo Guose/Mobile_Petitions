@@ -1,0 +1,959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Mobile_PetitionsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Mobile_PetitionsModelStoreContainer">
+    <EntitySet Name="Signatures" EntityType="Mobile_PetitionsModel.Store.Signatures" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RememberUsers" EntityType="Mobile_PetitionsModel.Store.RememberUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Circulators" EntityType="Mobile_PetitionsModel.Store.Circulators" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PetitionMasters" EntityType="Mobile_PetitionsModel.Store.PetitionMasters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PetitionTypes" EntityType="Mobile_PetitionsModel.Store.PetitionTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NotaryPages" EntityType="Mobile_PetitionsModel.Store.NotaryPages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VRImports" EntityType="Mobile_PetitionsModel.Store.VRImports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CountyCodes" EntityType="Mobile_PetitionsModel.Store.CountyCodes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DataLinkCriterias" EntityType="Mobile_PetitionsModel.Store.DataLinkCriterias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PetitionLines" EntityType="Mobile_PetitionsModel.Store.PetitionLines" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CirculatorSignature" Association="Mobile_PetitionsModel.Store.CirculatorSignature">
+      <End Role="Circulator" EntitySet="Circulators" />
+      <End Role="Signature" EntitySet="Signatures" />
+    </AssociationSet>
+    <AssociationSet Name="CirculatorNotaryPage" Association="Mobile_PetitionsModel.Store.CirculatorNotaryPage">
+      <End Role="Circulator" EntitySet="Circulators" />
+      <End Role="NotaryPage" EntitySet="NotaryPages" />
+    </AssociationSet>
+    <AssociationSet Name="CountyCodePetitionMaster" Association="Mobile_PetitionsModel.Store.CountyCodePetitionMaster">
+      <End Role="CountyCode" EntitySet="CountyCodes" />
+      <End Role="PetitionMaster" EntitySet="PetitionMasters" />
+    </AssociationSet>
+    <AssociationSet Name="PetitionTypePetitionMaster" Association="Mobile_PetitionsModel.Store.PetitionTypePetitionMaster">
+      <End Role="PetitionType" EntitySet="PetitionTypes" />
+      <End Role="PetitionMaster" EntitySet="PetitionMasters" />
+    </AssociationSet>
+    <AssociationSet Name="PetitionMasterDataLinkCriteria" Association="Mobile_PetitionsModel.Store.PetitionMasterDataLinkCriteria">
+      <End Role="PetitionMaster" EntitySet="PetitionMasters" />
+      <End Role="DataLinkCriteria" EntitySet="DataLinkCriterias" />
+    </AssociationSet>
+    <AssociationSet Name="DataLinkCriteriaPetitionLine" Association="Mobile_PetitionsModel.Store.DataLinkCriteriaPetitionLine">
+      <End Role="DataLinkCriteria" EntitySet="DataLinkCriterias" />
+      <End Role="PetitionLine" EntitySet="PetitionLines" />
+    </AssociationSet>
+    <AssociationSet Name="NotaryPagePetitionLine" Association="Mobile_PetitionsModel.Store.NotaryPagePetitionLine">
+      <End Role="NotaryPage" EntitySet="NotaryPages" />
+      <End Role="PetitionLine" EntitySet="PetitionLines" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Signatures">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Suffix" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="DLNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SignatureClip" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateSigned" Type="datetime" Nullable="false" />
+    <Property Name="CirculatorID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RememberUsers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReUser" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RePassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateEntered" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Circulators">
+    <Key>
+      <PropertyRef Name="CirculatorID" />
+    </Key>
+    <Property Name="CirculatorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="County" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Admin" Type="bit" Nullable="false" />
+    <Property Name="CircSigClip" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PetitionMasters">
+    <Key>
+      <PropertyRef Name="PetitionID" />
+    </Key>
+    <Property Name="PetitionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProponentID" Type="float" Nullable="false" />
+    <Property Name="JurisdictionID" Type="int" Nullable="false" />
+    <Property Name="PetitionName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PetitionTypeID" Type="int" Nullable="false" />
+    <Property Name="ProposedLawText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PetitionNumber" Type="float" Nullable="false" />
+    <Property Name="LegalReleaseDate" Type="datetime" Nullable="false" />
+    <Property Name="LegalTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LegalSummary" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullTextDisplay" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullTextPrint" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullTextDoc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BasisElectionDate" Type="datetime" Nullable="false" />
+    <Property Name="BasisElectionCount" Type="float" Nullable="false" />
+    <Property Name="NextElectionDate" Type="datetime" Nullable="false" />
+    <Property Name="SignaturesRequired" Type="bit" Nullable="false" />
+    <Property Name="PetitionDeadlineDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="float" Nullable="false" />
+    <Property Name="CirculatorName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AutoSignature" Type="bit" Nullable="false" />
+    <Property Name="PetitionSubmitDate" Type="datetime" Nullable="false" />
+    <Property Name="CandidateID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PoliticalPartyID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="JurisdictionValueID" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PetitionTypes">
+    <Key>
+      <PropertyRef Name="PetitionTypeID" />
+    </Key>
+    <Property Name="PetitionTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PetitionTypeName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotaryPages">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="PageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageKey" Type="int" Nullable="false" />
+    <Property Name="PacketKey" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PageNum" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ScanDate" Type="datetime" Nullable="false" />
+    <Property Name="CirculatorID" Type="int" Nullable="false" />
+    <Property Name="CircultorNotaryCounty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorNotaryName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorCounty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorCity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorState" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorZipCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorDateSigned" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SerialNumberBackError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorDataError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotaryDataError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotaryExpiredError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EarlyNotarizationError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorNotRegisteredError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SerialNumberBackParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorDataParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotaryDataParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotaryExpiredParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EarlyNotarizationParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CirculatorNotRegisteredParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RotatePage" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VRImports">
+    <Key>
+      <PropertyRef Name="VoterKey" />
+      <PropertyRef Name="VoterID" />
+    </Key>
+    <Property Name="VoterKey" Type="int" Nullable="false" />
+    <Property Name="VoterID" Type="int" Nullable="false" />
+    <Property Name="DriverLicenseNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="JurisdictionVR" Type="int" Nullable="false" />
+    <Property Name="VoterName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="stdStreet" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="stdCity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="stdState" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="stdPostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="stdCounty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressExtended" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="stdSuite" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CountyCodes">
+    <Key>
+      <PropertyRef Name="JurisdictionID" />
+    </Key>
+    <Property Name="JurisdictionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="County_Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="County" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataLinkCriterias">
+    <Key>
+      <PropertyRef Name="DataLinkID" />
+    </Key>
+    <Property Name="DataLinkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PetitionID" Type="int" Nullable="false" />
+    <Property Name="DataLinkCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodeDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OrderBy" Type="float" Nullable="false" />
+    <Property Name="UseBirthday" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PetitionLines">
+    <Key>
+      <PropertyRef Name="LineKey" />
+    </Key>
+    <Property Name="LineKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" Nullable="false" />
+    <Property Name="RowIndex" Type="int" Nullable="false" />
+    <Property Name="LineStatus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AutoAccepted" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StreetAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SignedDate" Type="datetime" Nullable="false" />
+    <Property Name="VoterID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DataLinkID" Type="int" Nullable="false" />
+    <Property Name="Apt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VoterRegNotFoundError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingNameError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingAddressError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingDateSignedError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressMismatchError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SignatureMismatchError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InvalidDateSignedError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingSignatureParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingNameParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingAddressParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MissingDateSignedParaError" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Suffix" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DriverLicenseNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="WithdrawnVoterError" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="CirculatorSignature">
+    <End Role="Circulator" Type="Mobile_PetitionsModel.Store.Circulators" Multiplicity="1" />
+    <End Role="Signature" Type="Mobile_PetitionsModel.Store.Signatures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Circulator">
+        <PropertyRef Name="CirculatorID" />
+      </Principal>
+      <Dependent Role="Signature">
+        <PropertyRef Name="CirculatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CirculatorNotaryPage">
+    <End Role="Circulator" Type="Mobile_PetitionsModel.Store.Circulators" Multiplicity="1" />
+    <End Role="NotaryPage" Type="Mobile_PetitionsModel.Store.NotaryPages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Circulator">
+        <PropertyRef Name="CirculatorID" />
+      </Principal>
+      <Dependent Role="NotaryPage">
+        <PropertyRef Name="CirculatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountyCodePetitionMaster">
+    <End Role="CountyCode" Type="Mobile_PetitionsModel.Store.CountyCodes" Multiplicity="1" />
+    <End Role="PetitionMaster" Type="Mobile_PetitionsModel.Store.PetitionMasters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountyCode">
+        <PropertyRef Name="JurisdictionID" />
+      </Principal>
+      <Dependent Role="PetitionMaster">
+        <PropertyRef Name="JurisdictionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PetitionTypePetitionMaster">
+    <End Role="PetitionType" Type="Mobile_PetitionsModel.Store.PetitionTypes" Multiplicity="1" />
+    <End Role="PetitionMaster" Type="Mobile_PetitionsModel.Store.PetitionMasters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PetitionType">
+        <PropertyRef Name="PetitionTypeID" />
+      </Principal>
+      <Dependent Role="PetitionMaster">
+        <PropertyRef Name="PetitionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PetitionMasterDataLinkCriteria">
+    <End Role="PetitionMaster" Type="Mobile_PetitionsModel.Store.PetitionMasters" Multiplicity="1" />
+    <End Role="DataLinkCriteria" Type="Mobile_PetitionsModel.Store.DataLinkCriterias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PetitionMaster">
+        <PropertyRef Name="PetitionID" />
+      </Principal>
+      <Dependent Role="DataLinkCriteria">
+        <PropertyRef Name="PetitionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DataLinkCriteriaPetitionLine">
+    <End Role="DataLinkCriteria" Type="Mobile_PetitionsModel.Store.DataLinkCriterias" Multiplicity="1" />
+    <End Role="PetitionLine" Type="Mobile_PetitionsModel.Store.PetitionLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataLinkCriteria">
+        <PropertyRef Name="DataLinkID" />
+      </Principal>
+      <Dependent Role="PetitionLine">
+        <PropertyRef Name="DataLinkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NotaryPagePetitionLine">
+    <End Role="NotaryPage" Type="Mobile_PetitionsModel.Store.NotaryPages" Multiplicity="1" />
+    <End Role="PetitionLine" Type="Mobile_PetitionsModel.Store.PetitionLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NotaryPage">
+        <PropertyRef Name="PageID" />
+      </Principal>
+      <Dependent Role="PetitionLine">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Mobile_PetitionsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Signature">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Suffix" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" />
+          <Property Name="DLNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SignatureClip" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateSigned" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Circulator" Relationship="Mobile_PetitionsModel.CirculatorSignature" FromRole="Signature" ToRole="Circulator" />
+          <Property Name="CirculatorID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Mobile_PetitionsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Signatures" EntityType="Self.Signature" />
+          <EntitySet Name="RememberUsers" EntityType="Mobile_PetitionsModel.RememberUser" />
+          <EntitySet Name="Circulators" EntityType="Mobile_PetitionsModel.Circulator" />
+          <AssociationSet Name="CirculatorSignature" Association="Mobile_PetitionsModel.CirculatorSignature">
+            <End Role="Circulator" EntitySet="Circulators" />
+            <End Role="Signature" EntitySet="Signatures" />
+          </AssociationSet>
+          <EntitySet Name="PetitionMasters" EntityType="Mobile_PetitionsModel.PetitionMaster" />
+          <EntitySet Name="PetitionTypes" EntityType="Mobile_PetitionsModel.PetitionType" />
+          <EntitySet Name="NotaryPages" EntityType="Mobile_PetitionsModel.NotaryPage" />
+          <EntitySet Name="VRImports" EntityType="Mobile_PetitionsModel.VRImport" />
+          <EntitySet Name="CountyCodes" EntityType="Mobile_PetitionsModel.CountyCode" />
+          <EntitySet Name="DataLinkCriterias" EntityType="Mobile_PetitionsModel.DataLinkCriteria" />
+          <AssociationSet Name="CirculatorNotaryPage" Association="Mobile_PetitionsModel.CirculatorNotaryPage">
+            <End Role="Circulator" EntitySet="Circulators" />
+            <End Role="NotaryPage" EntitySet="NotaryPages" />
+          </AssociationSet>
+          <AssociationSet Name="CountyCodePetitionMaster" Association="Mobile_PetitionsModel.CountyCodePetitionMaster">
+            <End Role="CountyCode" EntitySet="CountyCodes" />
+            <End Role="PetitionMaster" EntitySet="PetitionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="PetitionTypePetitionMaster" Association="Mobile_PetitionsModel.PetitionTypePetitionMaster">
+            <End Role="PetitionType" EntitySet="PetitionTypes" />
+            <End Role="PetitionMaster" EntitySet="PetitionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="PetitionMasterDataLinkCriteria" Association="Mobile_PetitionsModel.PetitionMasterDataLinkCriteria">
+            <End Role="PetitionMaster" EntitySet="PetitionMasters" />
+            <End Role="DataLinkCriteria" EntitySet="DataLinkCriterias" />
+          </AssociationSet>
+          <AssociationSet Name="DataLinkCriteriaPetitionLine" Association="Mobile_PetitionsModel.DataLinkCriteriaPetitionLine">
+            <End Role="DataLinkCriteria" EntitySet="DataLinkCriterias" />
+            <End Role="PetitionLine" EntitySet="PetitionLines" />
+          </AssociationSet>
+          <EntitySet Name="PetitionLines" EntityType="Mobile_PetitionsModel.PetitionLine" />
+          <AssociationSet Name="NotaryPagePetitionLine" Association="Mobile_PetitionsModel.NotaryPagePetitionLine">
+            <End Role="NotaryPage" EntitySet="NotaryPages" />
+            <End Role="PetitionLine" EntitySet="PetitionLines" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="RememberUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReUser" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RePassword" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateEntered" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Circulator">
+          <Key>
+            <PropertyRef Name="CirculatorID" />
+          </Key>
+          <Property Name="CirculatorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Admin" Type="Boolean" Nullable="false" />
+          <Property Name="CircSigClip" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Signatures" Relationship="Mobile_PetitionsModel.CirculatorSignature" FromRole="Circulator" ToRole="Signature" />
+          <NavigationProperty Name="NotaryPages" Relationship="Mobile_PetitionsModel.CirculatorNotaryPage" FromRole="Circulator" ToRole="NotaryPage" />
+        </EntityType>
+        <Association Name="CirculatorSignature">
+          <End Type="Mobile_PetitionsModel.Circulator" Role="Circulator" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.Signature" Role="Signature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circulator">
+              <PropertyRef Name="CirculatorID" />
+            </Principal>
+            <Dependent Role="Signature">
+              <PropertyRef Name="CirculatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PetitionMaster">
+          <Key>
+            <PropertyRef Name="PetitionID" />
+          </Key>
+          <Property Name="PetitionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" >
+            <Documentation>
+              <LongDescription>System Petition ID Number</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="ProponentID" Type="Double" Nullable="false" />
+          <Property Name="JurisdictionID" Type="Int32" Nullable="false" />
+          <Property Name="PetitionName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PetitionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProposedLawText" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PetitionNumber" Type="Double" Nullable="false" />
+          <Property Name="LegalReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LegalTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LegalSummary" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FullTextDisplay" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" >
+            <Documentation>
+              <LongDescription>Access petition's full text button</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="FullTextPrint" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FullTextDoc" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BasisElectionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BasisElectionCount" Type="Double" Nullable="false" />
+          <Property Name="NextElectionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SignaturesRequired" Type="Boolean" Nullable="false" />
+          <Property Name="PetitionDeadlineDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Double" Nullable="false" />
+          <Property Name="CirculatorName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AutoSignature" Type="Boolean" Nullable="false" />
+          <Property Name="PetitionSubmitDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CandidateID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PoliticalPartyID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="JurisdictionValueID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CountyCode" Relationship="Mobile_PetitionsModel.CountyCodePetitionMaster" FromRole="PetitionMaster" ToRole="CountyCode" />
+          <NavigationProperty Name="PetitionType" Relationship="Mobile_PetitionsModel.PetitionTypePetitionMaster" FromRole="PetitionMaster" ToRole="PetitionType" />
+          <NavigationProperty Name="DataLinkCriterias" Relationship="Mobile_PetitionsModel.PetitionMasterDataLinkCriteria" FromRole="PetitionMaster" ToRole="DataLinkCriteria" />
+        </EntityType>
+        <EntityType Name="PetitionType">
+          <Key>
+            <PropertyRef Name="PetitionTypeID" />
+          </Key>
+          <Property Name="PetitionTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetitionTypeName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PetitionMasters" Relationship="Mobile_PetitionsModel.PetitionTypePetitionMaster" FromRole="PetitionType" ToRole="PetitionMaster" />
+        </EntityType>
+        <EntityType Name="PetitionLine">
+          <Key>
+            <PropertyRef Name="LineKey" />
+          </Key>
+          <Property Name="LineKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" >
+            <Documentation>
+              <LongDescription>Continuous record counter that is unique to a petition.</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" >
+            <Documentation>
+              <LongDescription>Unique counter for each login session</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="RowIndex" Type="Int32" Nullable="false" >
+            <Documentation>
+              <LongDescription>Unique record counter for each session</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="LineStatus" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AutoAccepted" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" >
+            <Documentation>
+              <LongDescription>Vaild match using mobile validation algorithm</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StreetAddress" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SignedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VoterID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DataLinkID" Type="Int32" Nullable="false" >
+            <Documentation>
+              <LongDescription>Populated by mobile validation algorithm</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="Apt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="VoterRegNotFoundError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingNameError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingAddressError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingDateSignedError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AddressMismatchError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SignatureMismatchError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="InvalidDateSignedError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingSignatureParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingNameParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingAddressParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MissingDateSignedParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Suffix" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DriverLicenseNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WithdrawnVoterError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DataLinkCriteria" Relationship="Mobile_PetitionsModel.DataLinkCriteriaPetitionLine" FromRole="PetitionLine" ToRole="DataLinkCriteria" />
+          <NavigationProperty Name="NotaryPage" Relationship="Mobile_PetitionsModel.NotaryPagePetitionLine" FromRole="PetitionLine" ToRole="NotaryPage" />
+        </EntityType>
+        <EntityType Name="NotaryPage">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="PacketKey" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PageNum" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ScanDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CirculatorID" Type="Int32" Nullable="false" />
+          <Property Name="CircultorNotaryCounty" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorNotaryName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorCounty" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorAddress" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorCity" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorState" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorZipCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorDateSigned" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SerialNumberBackError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorDataError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NotaryDataError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NotaryExpiredError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EarlyNotarizationError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorNotRegisteredError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SerialNumberBackParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorDataParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NotaryDataParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NotaryExpiredParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EarlyNotarizationParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CirculatorNotRegisteredParaError" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RotatePage" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Circulator" Relationship="Mobile_PetitionsModel.CirculatorNotaryPage" FromRole="NotaryPage" ToRole="Circulator" />
+          <NavigationProperty Name="PetitionLines" Relationship="Mobile_PetitionsModel.NotaryPagePetitionLine" FromRole="NotaryPage" ToRole="PetitionLine" />
+        </EntityType>
+        <EntityType Name="VRImport">
+          <Key>
+            <PropertyRef Name="VoterKey" />
+            <PropertyRef Name="VoterID" />
+          </Key>
+          <Property Name="VoterKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="VoterID" Type="Int32" Nullable="false" />
+          <Property Name="DriverLicenseNumber" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="JurisdictionVR" Type="Int32" Nullable="false" />
+          <Property Name="VoterName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="stdStreet" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="stdCity" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="stdState" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="stdPostalCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="stdCounty" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AddressExtended" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="stdSuite" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CountyCode">
+          <Key>
+            <PropertyRef Name="JurisdictionID" />
+          </Key>
+          <Property Name="JurisdictionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="County_Code" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PetitionMasters" Relationship="Mobile_PetitionsModel.CountyCodePetitionMaster" FromRole="CountyCode" ToRole="PetitionMaster" />
+        </EntityType>
+        <EntityType Name="DataLinkCriteria">
+          <Key>
+            <PropertyRef Name="DataLinkID" />
+          </Key>
+          <Property Name="DataLinkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetitionID" Type="Int32" Nullable="false" />
+          <Property Name="DataLinkCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CodeDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OrderBy" Type="Double" Nullable="false" />
+          <Property Name="UseBirthday" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PetitionMaster" Relationship="Mobile_PetitionsModel.PetitionMasterDataLinkCriteria" FromRole="DataLinkCriteria" ToRole="PetitionMaster" />
+          <NavigationProperty Name="PetitionLines" Relationship="Mobile_PetitionsModel.DataLinkCriteriaPetitionLine" FromRole="DataLinkCriteria" ToRole="PetitionLine" />
+        </EntityType>
+        <Association Name="CirculatorNotaryPage">
+          <End Type="Mobile_PetitionsModel.Circulator" Role="Circulator" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.NotaryPage" Role="NotaryPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circulator">
+              <PropertyRef Name="CirculatorID" />
+            </Principal>
+            <Dependent Role="NotaryPage">
+              <PropertyRef Name="CirculatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CountyCodePetitionMaster">
+          <End Type="Mobile_PetitionsModel.CountyCode" Role="CountyCode" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.PetitionMaster" Role="PetitionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountyCode">
+              <PropertyRef Name="JurisdictionID" />
+            </Principal>
+            <Dependent Role="PetitionMaster">
+              <PropertyRef Name="JurisdictionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PetitionTypePetitionMaster">
+          <End Type="Mobile_PetitionsModel.PetitionType" Role="PetitionType" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.PetitionMaster" Role="PetitionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PetitionType">
+              <PropertyRef Name="PetitionTypeID" />
+            </Principal>
+            <Dependent Role="PetitionMaster">
+              <PropertyRef Name="PetitionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PetitionMasterDataLinkCriteria">
+          <End Type="Mobile_PetitionsModel.PetitionMaster" Role="PetitionMaster" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.DataLinkCriteria" Role="DataLinkCriteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PetitionMaster">
+              <PropertyRef Name="PetitionID" />
+            </Principal>
+            <Dependent Role="DataLinkCriteria">
+              <PropertyRef Name="PetitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DataLinkCriteriaPetitionLine">
+          <End Type="Mobile_PetitionsModel.DataLinkCriteria" Role="DataLinkCriteria" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.PetitionLine" Role="PetitionLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataLinkCriteria">
+              <PropertyRef Name="DataLinkID" />
+            </Principal>
+            <Dependent Role="PetitionLine">
+              <PropertyRef Name="DataLinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NotaryPagePetitionLine">
+          <End Type="Mobile_PetitionsModel.NotaryPage" Role="NotaryPage" Multiplicity="1" />
+          <End Type="Mobile_PetitionsModel.PetitionLine" Role="PetitionLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotaryPage">
+              <PropertyRef Name="PageID" />
+            </Principal>
+            <Dependent Role="PetitionLine">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Mobile_PetitionsModelStoreContainer" CdmEntityContainer="Mobile_PetitionsEntities">
+    <EntitySetMapping Name="Signatures">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.Signature)">
+        <MappingFragment StoreEntitySet="Signatures">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="DLNumber" ColumnName="DLNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="SignatureClip" ColumnName="SignatureClip" />
+          <ScalarProperty Name="DateSigned" ColumnName="DateSigned" />
+          <ScalarProperty Name="CirculatorID" ColumnName="CirculatorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RememberUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.RememberUser)">
+        <MappingFragment StoreEntitySet="RememberUsers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReUser" ColumnName="ReUser" />
+          <ScalarProperty Name="RePassword" ColumnName="RePassword" />
+          <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Circulators">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.Circulator)">
+        <MappingFragment StoreEntitySet="Circulators">
+          <ScalarProperty Name="CirculatorID" ColumnName="CirculatorID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="CircSigClip" ColumnName="CircSigClip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetitionMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.PetitionMaster)">
+        <MappingFragment StoreEntitySet="PetitionMasters">
+          <ScalarProperty Name="PetitionID" ColumnName="PetitionID" />
+          <ScalarProperty Name="ProponentID" ColumnName="ProponentID" />
+          <ScalarProperty Name="JurisdictionID" ColumnName="JurisdictionID" />
+          <ScalarProperty Name="PetitionName" ColumnName="PetitionName" />
+          <ScalarProperty Name="PetitionTypeID" ColumnName="PetitionTypeID" />
+          <ScalarProperty Name="ProposedLawText" ColumnName="ProposedLawText" />
+          <ScalarProperty Name="PetitionNumber" ColumnName="PetitionNumber" />
+          <ScalarProperty Name="LegalReleaseDate" ColumnName="LegalReleaseDate" />
+          <ScalarProperty Name="LegalTitle" ColumnName="LegalTitle" />
+          <ScalarProperty Name="LegalSummary" ColumnName="LegalSummary" />
+          <ScalarProperty Name="FullTextDisplay" ColumnName="FullTextDisplay" />
+          <ScalarProperty Name="FullTextPrint" ColumnName="FullTextPrint" />
+          <ScalarProperty Name="FullTextDoc" ColumnName="FullTextDoc" />
+          <ScalarProperty Name="BasisElectionDate" ColumnName="BasisElectionDate" />
+          <ScalarProperty Name="BasisElectionCount" ColumnName="BasisElectionCount" />
+          <ScalarProperty Name="NextElectionDate" ColumnName="NextElectionDate" />
+          <ScalarProperty Name="SignaturesRequired" ColumnName="SignaturesRequired" />
+          <ScalarProperty Name="PetitionDeadlineDate" ColumnName="PetitionDeadlineDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CirculatorName" ColumnName="CirculatorName" />
+          <ScalarProperty Name="AutoSignature" ColumnName="AutoSignature" />
+          <ScalarProperty Name="PetitionSubmitDate" ColumnName="PetitionSubmitDate" />
+          <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+          <ScalarProperty Name="PoliticalPartyID" ColumnName="PoliticalPartyID" />
+          <ScalarProperty Name="JurisdictionValueID" ColumnName="JurisdictionValueID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetitionTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.PetitionType)">
+        <MappingFragment StoreEntitySet="PetitionTypes">
+          <ScalarProperty Name="PetitionTypeID" ColumnName="PetitionTypeID" />
+          <ScalarProperty Name="PetitionTypeName" ColumnName="PetitionTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotaryPages">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.NotaryPage)">
+        <MappingFragment StoreEntitySet="NotaryPages">
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="PageKey" ColumnName="PageKey" />
+          <ScalarProperty Name="PacketKey" ColumnName="PacketKey" />
+          <ScalarProperty Name="PageNum" ColumnName="PageNum" />
+          <ScalarProperty Name="ScanDate" ColumnName="ScanDate" />
+          <ScalarProperty Name="CirculatorID" ColumnName="CirculatorID" />
+          <ScalarProperty Name="CircultorNotaryCounty" ColumnName="CircultorNotaryCounty" />
+          <ScalarProperty Name="CirculatorNotaryName" ColumnName="CirculatorNotaryName" />
+          <ScalarProperty Name="CirculatorCounty" ColumnName="CirculatorCounty" />
+          <ScalarProperty Name="CirculatorName" ColumnName="CirculatorName" />
+          <ScalarProperty Name="CirculatorAddress" ColumnName="CirculatorAddress" />
+          <ScalarProperty Name="CirculatorCity" ColumnName="CirculatorCity" />
+          <ScalarProperty Name="CirculatorState" ColumnName="CirculatorState" />
+          <ScalarProperty Name="CirculatorZipCode" ColumnName="CirculatorZipCode" />
+          <ScalarProperty Name="CirculatorDateSigned" ColumnName="CirculatorDateSigned" />
+          <ScalarProperty Name="SerialNumberBackError" ColumnName="SerialNumberBackError" />
+          <ScalarProperty Name="CirculatorDataError" ColumnName="CirculatorDataError" />
+          <ScalarProperty Name="NotaryDataError" ColumnName="NotaryDataError" />
+          <ScalarProperty Name="NotaryExpiredError" ColumnName="NotaryExpiredError" />
+          <ScalarProperty Name="EarlyNotarizationError" ColumnName="EarlyNotarizationError" />
+          <ScalarProperty Name="CirculatorNotRegisteredError" ColumnName="CirculatorNotRegisteredError" />
+          <ScalarProperty Name="SerialNumberBackParaError" ColumnName="SerialNumberBackParaError" />
+          <ScalarProperty Name="CirculatorDataParaError" ColumnName="CirculatorDataParaError" />
+          <ScalarProperty Name="NotaryDataParaError" ColumnName="NotaryDataParaError" />
+          <ScalarProperty Name="NotaryExpiredParaError" ColumnName="NotaryExpiredParaError" />
+          <ScalarProperty Name="EarlyNotarizationParaError" ColumnName="EarlyNotarizationParaError" />
+          <ScalarProperty Name="CirculatorNotRegisteredParaError" ColumnName="CirculatorNotRegisteredParaError" />
+          <ScalarProperty Name="RotatePage" ColumnName="RotatePage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VRImports">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.VRImport)">
+        <MappingFragment StoreEntitySet="VRImports">
+          <ScalarProperty Name="VoterKey" ColumnName="VoterKey" />
+          <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+          <ScalarProperty Name="DriverLicenseNumber" ColumnName="DriverLicenseNumber" />
+          <ScalarProperty Name="JurisdictionVR" ColumnName="JurisdictionVR" />
+          <ScalarProperty Name="VoterName" ColumnName="VoterName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="stdStreet" ColumnName="stdStreet" />
+          <ScalarProperty Name="stdCity" ColumnName="stdCity" />
+          <ScalarProperty Name="stdState" ColumnName="stdState" />
+          <ScalarProperty Name="stdPostalCode" ColumnName="stdPostalCode" />
+          <ScalarProperty Name="stdCounty" ColumnName="stdCounty" />
+          <ScalarProperty Name="AddressExtended" ColumnName="AddressExtended" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="stdSuite" ColumnName="stdSuite" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountyCodes">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.CountyCode)">
+        <MappingFragment StoreEntitySet="CountyCodes">
+          <ScalarProperty Name="JurisdictionID" ColumnName="JurisdictionID" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="County_Code" ColumnName="County_Code" />
+          <ScalarProperty Name="County" ColumnName="County" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataLinkCriterias">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.DataLinkCriteria)">
+        <MappingFragment StoreEntitySet="DataLinkCriterias">
+          <ScalarProperty Name="DataLinkID" ColumnName="DataLinkID" />
+          <ScalarProperty Name="PetitionID" ColumnName="PetitionID" />
+          <ScalarProperty Name="DataLinkCode" ColumnName="DataLinkCode" />
+          <ScalarProperty Name="CodeDescription" ColumnName="CodeDescription" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="UseBirthday" ColumnName="UseBirthday" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetitionLines">
+      <EntityTypeMapping TypeName="IsTypeOf(Mobile_PetitionsModel.PetitionLine)">
+        <MappingFragment StoreEntitySet="PetitionLines">
+          <ScalarProperty Name="LineKey" ColumnName="LineKey" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="RowIndex" ColumnName="RowIndex" />
+          <ScalarProperty Name="LineStatus" ColumnName="LineStatus" />
+          <ScalarProperty Name="AutoAccepted" ColumnName="AutoAccepted" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="SignedDate" ColumnName="SignedDate" />
+          <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+          <ScalarProperty Name="DataLinkID" ColumnName="DataLinkID" />
+          <ScalarProperty Name="Apt" ColumnName="Apt" />
+          <ScalarProperty Name="VoterRegNotFoundError" ColumnName="VoterRegNotFoundError" />
+          <ScalarProperty Name="MissingNameError" ColumnName="MissingNameError" />
+          <ScalarProperty Name="MissingAddressError" ColumnName="MissingAddressError" />
+          <ScalarProperty Name="MissingDateSignedError" ColumnName="MissingDateSignedError" />
+          <ScalarProperty Name="AddressMismatchError" ColumnName="AddressMismatchError" />
+          <ScalarProperty Name="SignatureMismatchError" ColumnName="SignatureMismatchError" />
+          <ScalarProperty Name="InvalidDateSignedError" ColumnName="InvalidDateSignedError" />
+          <ScalarProperty Name="MissingSignatureParaError" ColumnName="MissingSignatureParaError" />
+          <ScalarProperty Name="MissingNameParaError" ColumnName="MissingNameParaError" />
+          <ScalarProperty Name="MissingAddressParaError" ColumnName="MissingAddressParaError" />
+          <ScalarProperty Name="MissingDateSignedParaError" ColumnName="MissingDateSignedParaError" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+          <ScalarProperty Name="DriverLicenseNumber" ColumnName="DriverLicenseNumber" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="WithdrawnVoterError" ColumnName="WithdrawnVoterError" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="b9d7ddca31d34ecb8686aaa49bb308b8" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.Signature" Width="1.5" PointX="14.375" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.RememberUser" Width="1.5" PointX="14.375" PointY="0.875" />
+        <AssociationConnector Association="Mobile_PetitionsModel.CirculatorSignature" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.Circulator" Width="1.875" PointX="11.875" PointY="0.5" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.PetitionMaster" Width="1.875" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.PetitionType" Width="1.625" PointX="3.25" PointY="6.125" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.PetitionLine" Width="2.125" PointX="5.875" PointY="0.5" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.NotaryPage" Width="2.125" PointX="9" PointY="0.5" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.VRImport" Width="1.875" PointX="11.5" PointY="5" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.CountyCode" Width="1.625" PointX="3.25" PointY="3.625" />
+        <EntityTypeShape EntityType="Mobile_PetitionsModel.DataLinkCriteria" Width="1.625" PointX="3.25" PointY="0.5" />
+        <AssociationConnector Association="Mobile_PetitionsModel.CirculatorNotaryPage" />
+        <AssociationConnector Association="Mobile_PetitionsModel.CountyCodePetitionMaster" />
+        <AssociationConnector Association="Mobile_PetitionsModel.PetitionTypePetitionMaster" />
+        <AssociationConnector Association="Mobile_PetitionsModel.PetitionMasterDataLinkCriteria" />
+        <AssociationConnector Association="Mobile_PetitionsModel.DataLinkCriteriaPetitionLine" />
+        <AssociationConnector Association="Mobile_PetitionsModel.NotaryPagePetitionLine" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
