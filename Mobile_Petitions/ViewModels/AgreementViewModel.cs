@@ -1,12 +1,5 @@
 ﻿using Mobile_Petitions.SERVICE;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Mobile_Petitions.Views;
 
 namespace Mobile_Petitions.ViewModels
 {

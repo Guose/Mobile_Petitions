@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mobile_Petitions.ViewModels
 {
@@ -19,6 +15,7 @@ namespace Mobile_Petitions.ViewModels
         {
             //Create new instance of generi type(i.e. Type of view model passed)
             T newVM = (T)Activator.CreateInstance(typeof(T), _mainVM);
+
             //Change MainViewModels ViewModel to the new instance
             _mainVM.Navigate<T>(newVM);
         }
