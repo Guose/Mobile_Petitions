@@ -9,6 +9,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Runtime.Serialization;
@@ -17,13 +18,13 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "CirculatorSignature", "Circulator", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.Circulator), "Signature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.Signature), true)]
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "CirculatorNotaryPage", "Circulator", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.Circulator), "NotaryPage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.NotaryPage), true)]
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "CountyCodePetitionMaster", "CountyCode", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.CountyCode), "PetitionMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionMaster), true)]
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "PetitionTypePetitionMaster", "PetitionType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.PetitionType), "PetitionMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionMaster), true)]
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "PetitionMasterDataLinkCriteria", "PetitionMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.PetitionMaster), "DataLinkCriteria", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.DataLinkCriteria), true)]
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "DataLinkCriteriaPetitionLine", "DataLinkCriteria", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.DataLinkCriteria), "PetitionLine", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionLine), true)]
-[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "NotaryPagePetitionLine", "NotaryPage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.NotaryPage), "PetitionLine", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionLine), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "CirculatorSignature", "Circulator", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.Circulator), "Signature", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.Signature), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "CirculatorNotaryPage", "Circulator", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.Circulator), "NotaryPage", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.NotaryPage), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "CountyCodePetitionMaster", "CountyCode", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.CountyCode), "PetitionMaster", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionMaster), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "PetitionTypePetitionMaster", "PetitionType", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.PetitionType), "PetitionMaster", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionMaster), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "PetitionMasterDataLinkCriteria", "PetitionMaster", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.PetitionMaster), "DataLinkCriteria", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.DataLinkCriteria), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "DataLinkCriteriaPetitionLine", "DataLinkCriteria", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.DataLinkCriteria), "PetitionLine", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionLine), true)]
+[assembly: EdmRelationshipAttribute("Mobile_PetitionsModel", "NotaryPagePetitionLine", "NotaryPage", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.One, typeof(Mobile_Petitions.DAL.NotaryPage), "PetitionLine", System.Data.Entity.Core.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Mobile_Petitions.DAL.PetitionLine), true)]
 
 #endregion
 
