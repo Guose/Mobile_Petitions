@@ -16,7 +16,6 @@ namespace Mobile_Petitions.BL
         public bool IsDataLink { get; set; }
 
         Scanner scanner;
-
         Mobile_PetitionsEntities mpx;
 
 
@@ -64,9 +63,14 @@ namespace Mobile_Petitions.BL
                 using (mpx = new Mobile_PetitionsEntities())
                 {
                     var dataLinkM2 = from m2 in mpx.VRImports
-                                     where scanner.Birthdate.ToString("M/d/yyyy") == m2.BirthDate.ToString() && scanner.Address == m2.Address && scanner.City == m2.City
-                                     && scanner.State == m2.State && scanner.ZipCode == m2.ZipCode && scanner.FirstName == m2.FirstName 
-                                     && scanner.MiddleName.Substring(0,1) == m2.MiddleName.Substring(0,1) && scanner.LastName == m2.LastName
+                                     where scanner.Birthdate.ToString("M/d/yyyy") == m2.BirthDate.ToString() 
+                                     && scanner.Address == m2.Address 
+                                     && scanner.City == m2.City
+                                     && scanner.State == m2.State 
+                                     && scanner.ZipCode == m2.ZipCode 
+                                     && scanner.FirstName == m2.FirstName 
+                                     && scanner.MiddleName.Substring(0,1) == m2.MiddleName.Substring(0,1) 
+                                     && scanner.LastName == m2.LastName
                                      select m2;
 
                     if (dataLinkM2.Any())
@@ -100,8 +104,12 @@ namespace Mobile_Petitions.BL
                 using (mpx = new Mobile_PetitionsEntities())
                 {
                     var dataLinkM3 = from m3 in mpx.VRImports
-                                     where scanner.Birthdate.ToString("M/d/yyyy") == m3.BirthDate.ToString() && scanner.Address == m3.Address && scanner.City == m3.City
-                                     && scanner.State == m3.State && scanner.ZipCode == m3.ZipCode && scanner.FirstName == m3.FirstName
+                                     where scanner.Birthdate.ToString("M/d/yyyy") == m3.BirthDate.ToString() 
+                                     && scanner.Address == m3.Address 
+                                     && scanner.City == m3.City
+                                     && scanner.State == m3.State 
+                                     && scanner.ZipCode == m3.ZipCode 
+                                     && scanner.FirstName == m3.FirstName
                                      && scanner.LastName == m3.LastName
                                      select m3;
 

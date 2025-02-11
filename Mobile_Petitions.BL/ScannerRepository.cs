@@ -15,7 +15,7 @@ namespace Mobile_Petitions.BL
     {
         private Mobile_PetitionsEntities mpx;
 
-        public void RetrieveLastScannedRecord()
+        public void GetLastRecordScanned()
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Mobile_Petitions.BL
 
             try
             {
-                if (CheckForDuplicateRecordScanned() == false)
+                if (!CheckForDuplicateRecordScanned())
                 { 
                     using (mpx = new Mobile_PetitionsEntities())
                     {
@@ -100,10 +100,7 @@ namespace Mobile_Petitions.BL
                                      where DLNumber == dup.DLNumber
                                      select dup;
 
-                    if (duplicates.Any())
-                        return true;
-                    else
-                        return false;
+                    return duplicates.Any();
                 }
             }
             catch (Exception ex)

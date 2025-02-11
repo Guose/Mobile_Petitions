@@ -41,7 +41,7 @@ namespace Mobile_Petitions.SERVICE
             string name = string.Empty;
 
             scannerRepo = new ScannerRepository();
-            scannerRepo.RetrieveLastScannedRecord();
+            scannerRepo.GetLastRecordScanned();
 
             ServiceProperties.Service.ScannedFirstName = AccessDT.Instance.ScannedFirstName;
             ServiceProperties.Service.ScannedLastName = AccessDT.Instance.ScannedLastName;

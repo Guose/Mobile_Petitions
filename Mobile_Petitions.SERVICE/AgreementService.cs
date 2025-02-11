@@ -10,7 +10,7 @@ namespace Mobile_Petitions.SERVICE
         {
             agreeRepo = new AgreementRepository();
 
-            agreeRepo.DeleteUnAgreedScan();
+            agreeRepo.DeleteDisAgreedScan();
         }
     }
 }

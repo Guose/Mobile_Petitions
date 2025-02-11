@@ -5,6 +5,8 @@
              xmlns:viewmodels="clr-namespace:Mobile_Petitions.ViewModels"
              xmlns:views="clr-namespace:Mobile_Petitions.Views"
              StartupUri="MainWindow.xaml">
+    
+    
     <Application.Resources>
         <DataTemplate x:Name="loginViewTemplate" DataType="{x:Type viewmodels:LoginViewModel}">
             <views:LoginView DataContext="{Binding}"/>
@@ -24,5 +26,49 @@
         <DataTemplate x:Name="homePageViewTemplate" DataType="{x:Type viewmodels:HomePageViewModel}">
             <views:HomePageView DataContext="{Binding}"/>
         </DataTemplate>
+
+        <DropShadowEffect x:Key="dropShadow" 
+                              BlurRadius="10" 
+                              Color="#FFCBCBCB" 
+                              Direction="310" 
+                              ShadowDepth="3"/>
+
+        <Style x:Key="LabelDark" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="#FF42919C"/>
+            <Setter Property="FontFamily" Value="Arial Rounded MT Bold"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="LabelLight" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Arial Rounded MT Bold"/>
+        </Style>
+
+        <Style x:Key="ButtonStyleDark" TargetType="Button" >
+            <Setter Property="Background" Value="#FF347D94" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="BorderThickness" Value="1,1,2,2" />
+            <Setter Property="Effect" Value="{StaticResource dropShadow}"/>
+        </Style>
+
+        <Style x:Key="TextButtonDark" TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="#FF42919C"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Arial Rounded MT Bold" />
+            <Setter Property="Width" Value="65" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+
     </Application.Resources>
+    
+    
 </Application>

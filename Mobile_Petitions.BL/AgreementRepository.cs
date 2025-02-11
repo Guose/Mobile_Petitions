@@ -11,7 +11,7 @@ namespace Mobile_Petitions.BL
     {
         private Mobile_PetitionsEntities mpx;
 
-        public void DeleteUnAgreedScan()
+        public void DeleteDisAgreedScan()
         {
             try
             {
